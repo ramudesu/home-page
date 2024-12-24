@@ -1,0 +1,29 @@
+@charset 'utf-8';
+@use "../../util/util" as *;
+/* -------------- 文字色系 -------------- */
+.has-text-color,
+.has-link-color,
+.has-inline-color {
+  &.has-black-color {
+    color: $c-black !important;
+  }
+  &.has-white-color {
+    color: $c-white !important;
+  }
+  &.has-red-color {
+    color: $c-red !important;
+  }
+}
+
+/* -------------- 背景色 -------------- */
+.has-background {
+  &.has-black-background-color {
+    background-color: $c-black !important;
+  }
+  &.has-white-background-color {
+    background-color: $c-white !important;
+  }
+  &.has-red-background-color {
+    background-color: #ca3333 !important;
+  }
+}

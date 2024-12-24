@@ -1,0 +1,293 @@
+@charset 'utf-8';
+@use "./util/util" as *;
+
+/*------------------------------------------------
+lcl-hero
+------------------------------------------------*/
+.lcl-hero {
+  padding-top: rem(100);
+  background-color: $c-pink;
+  /* SP ------------ */
+  @include media_narrow {
+  }
+  .lcl-hero__ttl {
+    width: rem(1000);
+    margin: 0 auto;
+    /* SP ------------ */
+    @include media_narrow {
+    }
+  }
+}
+
+/*------------------------------------------------
+lcl-lead
+------------------------------------------------*/
+.lcl-lead {
+  position: relative;
+  padding-block: rem(150) rem(220);
+  .lcl-lead__in {
+    width: rem(1200);
+    margin: 0 auto;
+  }
+  .lcl-lead__box {
+    width: rem(1000);
+    margin-left: auto;
+    margin-right: 0;
+  }
+  .lcl-lead__txt {
+    &:not(:first-of-type) {
+      margin-top: rem(15);
+    }
+    &:nth-of-type(1) {
+      width: rem(600);
+    }
+    &:nth-of-type(2) {
+      width: rem(670);
+      translate: rem(80);
+    }
+    &:nth-of-type(3) {
+      width: rem(600);
+      margin-top: rem(20);
+      translate: rem(120);
+    }
+    &:nth-of-type(4) {
+      width: rem(440);
+      translate: rem(115);
+    }
+  }
+  /* .lcl-lead-plan ------------*/
+  .lcl-lead-plan {
+    position: relative;
+    z-index: 1;
+    width: rem(880);
+    margin-top: rem(50);
+    translate: rem(115);
+    &::before,
+    &::after {
+      content: "";
+      position: absolute;
+      z-index: 2;
+      display: block;
+      width: rem(30);
+      aspect-ratio: 136/176;
+      background: url(../img/01/lead/vec_01.png) center / cover no-repeat;
+    }
+    &::before {
+      top: rem(-10);
+      left: rem(-20);
+    }
+    &::after {
+      bottom: 0;
+      right: rem(-20);
+      rotate: 180deg;
+    }
+    &.scr-anin {
+      .lcl-lead-plan__txt {
+        opacity: 0;
+        transform-origin: center bottom;
+        scale: 0.7;
+        transition:
+          opacity 0.3s ease,
+          scale 0.3s cubic-bezier(0.72, 2.15, 0.57, 0.89);
+        &::before {
+          transform-origin: center;
+          scale: 0;
+          transition: scale 0.4s 0.3s cubic-bezier(0.67, 0.28, 0.29, 0.99);
+        }
+      }
+      .lcl-lead-plan__fukidashi {
+        opacity: 0;
+        transform-origin: left bottom;
+        scale: 0.7;
+        transition:
+          opacity 0.3s 0.5s ease,
+          scale 0.3s 0.5s cubic-bezier(0.72, 2.15, 0.57, 0.89);
+      }
+    }
+    &.scr-anin--on {
+      .lcl-lead-plan__txt {
+        opacity: 1;
+        scale: 1;
+        &::before {
+          scale: 1;
+        }
+        img {
+          display: block;
+          animation-play-state: running;
+          animation-delay: 2s;
+        }
+      }
+      .lcl-lead-plan__fukidashi {
+        opacity: 1;
+        scale: 1;
+      }
+    }
+  }
+  .lcl-lead-plan__txt {
+    position: relative;
+    display: block;
+    z-index: 1;
+    &::before {
+      content: "";
+      position: absolute;
+      z-index: -1;
+      bottom: 0;
+      left: -102%;
+      right: -100%;
+      display: block;
+      width: 105%;
+      height: rem(20);
+      margin: auto;
+      transform: skew(-50deg);
+      background-color: #e5e370;
+    }
+    img {
+      position: relative;
+      z-index: 1;
+      animation: kf-fukidashi 3s infinite forwards ease paused;
+      @keyframes kf-fukidashi {
+        8% {
+          transform: scale(0.9);
+        }
+        16% {
+          transform: scale(1);
+        }
+        24% {
+          transform: scale(0.9);
+        }
+        32% {
+          transform: scale(1);
+        }
+      }
+    }
+  }
+  .lcl-lead-plan__fukidashi {
+    position: absolute;
+    top: rem(-260);
+    right: 0;
+    width: rem(240);
+  }
+  /* .lcl-lead-price ------------*/
+  .lcl-lead-price {
+    position: relative;
+    width: rem(575);
+    margin-top: rem(60);
+    translate: rem(210);
+    &.scr-anin {
+      .lcl-lead-price__txt {
+        display: block;
+        opacity: 0;
+        translate: 0 rem(20);
+        transition:
+          opacity 0.3s ease,
+          translate 0.3s ease;
+      }
+      ._lcl-lead-price_zero {
+        opacity: 0;
+        scale: 1.2;
+        transition:
+          opacity 0.3s 0.5s ease,
+          scale 0.3s 0.5s cubic-bezier(0.72, 2.15, 0.57, 0.89);
+      }
+    }
+    &.scr-anin--on {
+      .lcl-lead-price__txt {
+        opacity: 1;
+        translate: 0;
+      }
+      ._lcl-lead-price_zero {
+        opacity: 1;
+        scale: 1;
+      }
+    }
+  }
+  ._lcl-lead-price_zero {
+    position: absolute;
+    bottom: pct(-50, 167);
+    right: pct(56, 575);
+    display: block;
+    width: pct(110, 575);
+    &::after {
+      content: "";
+      position: absolute;
+      top: pct(-10, 213);
+      right: pct(-20, 110);
+      display: block;
+      width: pct(50, 110);
+      aspect-ratio: 125/114;
+      background: url(../img/01/lead/price_03.png) center / cover no-repeat;
+    }
+  }
+  /* .lcl-lead-shirokuma ------------*/
+  .lcl-lead-shirokuma {
+    position: absolute;
+    bottom: 0;
+    left: 4%;
+    width: rem(330);
+    aspect-ratio: 690/860;
+    // overflow: hidden;
+    /* PC ------------*/
+    @include media_wide {
+      @media screen and (min-width: 1600px) {
+        left: calc((100% - #{rem(1300)}) / 2 + 4%);
+      }
+    }
+  }
+  .lcl-lead-shirokuma__in {
+    position: absolute;
+    inset: rem(-45) -100% auto;
+    width: pct(500, 330);
+    aspect-ratio: 1;
+    margin: auto;
+  }
+  .lcl-lead-shirokuma__leaf {
+    position: absolute;
+    top: 10%;
+    left: 33%;
+    width: rem(110);
+    transform-origin: center bottom;
+  }
+  .lcl-lead-shirokuma__item {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+  }
+}
+
+/*------------------------------------------------
+lcl-about
+------------------------------------------------*/
+.lcl-about {
+  padding-block: rem(100);
+  background-color: $c-pink;
+  /* SP ------------ */
+  @include media_narrow {
+  }
+  .lcl-about__ttl {
+    position: relative;
+    padding-bottom: rem(10);
+    @include fz(55);
+    letter-spacing: 0.1em;
+    color: $c-blue;
+    text-align: center;
+    &::after {
+      content: "";
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      display: block;
+      width: rem(200);
+      height: rem(6);
+      margin: auto;
+      background-color: #0c3356;
+    }
+  }
+  .lcl-about__txt {
+    width: rem(900);
+    margin: rem(30) auto 0;
+    @include fz(24);
+    word-break: break-all;
+  }
+}

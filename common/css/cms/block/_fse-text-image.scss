@@ -1,0 +1,55 @@
+@charset 'utf-8';
+@use '../../util/util' as *;
+/*------------------------------------------------
+テキスト＆画像ブロック
+------------------------------------------------*/
+.post-content,
+body #wpwrap .editor-styles-wrapper .block-editor-block-list__layout // ブロックエディタ
+{
+  .fse-text-image {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: 0 rem(30);
+    margin-top: rem(30);
+    @include media_narrow {
+      flex-direction: column;
+      gap: rem(20) 0;
+    } /* SP only ------------ */
+    &.fse-text-image--reverse-w {
+      @include media_wide {
+        flex-direction: row-reverse;
+      } /* PC only ------------ */
+    }
+    &.fse-text-image--reverse-n {
+      @include media_narrow {
+        flex-direction: column-reverse;
+      } /* SP only ------------ */
+    }
+  }
+  .fse-text-image__main {
+    flex: 1;
+  }
+  .fse-text-image__txt {
+    margin-top: 0;
+  }
+  .fse-text-image__media {
+    width: rem(380);
+    margin: 0;
+    @include media_narrow {
+      width: 100%;
+    } /* SP only ------------ */
+  }
+  .fse-text-image__change {
+    display: block;
+    height: fit-content;
+  }
+  .fse-text-image__figure {
+  }
+  .fse-text-image__img {
+    margin: 0;
+  }
+  .fse-text-image__caption {
+  }
+}

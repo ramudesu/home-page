@@ -1,0 +1,465 @@
+@charset 'utf-8';
+@use "./util/util" as *;
+
+@font-face {
+  font-family: "03SmartFontUI";
+  src: url("../fonts/03SmartFontUI.otf") format("opentype");
+}
+@font-face {
+  font-family: "851Gkktt_005";
+  src: url("../fonts/851Gkktt_005.ttf") format("truetype");
+}
+@font-face {
+  font-family: "ShinGoPro";
+  font-weight: 700;
+  src: url("../fonts/A-OTF-ShinGoPro-Bold.otf") format("opentype");
+}
+@font-face {
+  font-family: "ShinGoPro";
+  font-weight: 500;
+  src: url("../fonts/A-OTF-ShinGoPro-Medium.otf") format("opentype");
+}
+@font-face {
+  font-family: "ShinGoPro";
+  font-weight: 300;
+  src: url("../fonts/A-OTF-ShinGoPro-Light.otf") format("opentype");
+}
+
+/*------------------------------------------------
+variable
+------------------------------------------------*/
+#__bs_notify__ {
+  display: none !important;
+}
+/* ルートをデザインデータ上の10pxに統一 ------------*/
+:root {
+  --min-width: 1300;
+  --max-width: 1600;
+  // --fz: 10px;
+  --fz: clamp(10px, calc(100vw / #{var(--min-width)} * 10), calc(#{var(--max-width)} / 1300 * 10px));
+  font-size: var(--fz);
+  --scrollbar: 0;
+  @include ie_only {
+    font-size: 10px;
+  }
+  @include media_narrow {
+    --fz: calc(100 / 375 * 10vw);
+  } /* SP only ------------ */
+}
+
+/*------------------------------------------------
+html,body
+------------------------------------------------*/
+html,
+body {
+  @include font-family;
+  color: $c-black;
+  background: #fff none;
+  -webkit-text-size-adjust: 100%;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-overflow-scrolling: touch;
+  @include txt-basic;
+}
+body {
+  *:focus-visible {
+    @include media_wide {
+      outline: auto;
+      // outline-color: tomato;
+    } /* PC only ------------ */
+    &[tabindex="-1"] {
+      outline: 0;
+      outline-color: transparent;
+    }
+  }
+  /* テキスト選択時の背景色を変更 */
+  ::selection {
+    background-color: transparent; /* 黄色の例 */
+  }
+}
+// * {
+//   // 全体のletter-spacingはここで変える
+//   // letter-spacing: 0.05em;
+// }
+// *::selection {
+//   background: rgba(0, 0, 0, 0.2);
+// }
+// *::-moz-selection {
+//   background: rgba(0, 0, 0, 0.2);
+// }
+.is-modal {
+  overflow: hidden;
+}
+.oh-open {
+  @include media_narrow {
+    overflow: hidden;
+    width: 100%;
+    position: fixed;
+    left: 0;
+  }
+  .overlay {
+    @include media_narrow {
+      opacity: 1;
+      visibility: visible;
+    } /* SP only ------------ */
+  }
+}
+// .ff-mincho {
+// 	font-family: 'Noto Serif JP', sans-serif;
+// }
+
+a[href*="未設定"],
+a[href=""] {
+  // @include dummy;
+}
+.dummy {
+  @include dummy;
+}
+
+/*------------------------------------------------
+general
+------------------------------------------------*/
+// PC専用(default: 1000px)
+.w1000 {
+  @include w1000;
+}
+// SP専用(default: 345px)
+.inner {
+  @include inner;
+}
+
+/*------------------------------------------------
+svg
+------------------------------------------------*/
+.ico_svg {
+  width: 100%;
+  height: auto;
+  .svg-circle {
+    transition:
+      fill 0.25s ease,
+      stroke 0.25s ease;
+  }
+  .svg-path {
+    transition:
+      fill 0.25s ease,
+      stroke 0.25s ease;
+  }
+}
+
+/*------------------------------------------------
+wrapper
+------------------------------------------------*/
+#wrapper {
+  @include media_wide {
+    min-width: 1024px;
+  }
+  @include media_narrow {
+    width: 100%;
+  }
+}
+
+/*------------------------------------------------
+header
+------------------------------------------------*/
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  @include flex;
+  width: 100%;
+  z-index: 1000;
+  padding-top: 20px;
+  img {
+    width: 100%;
+  }
+}
+/* overlay ------------*/
+.overlay {
+  @include media_narrow {
+    position: fixed;
+    z-index: 999;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 130%;
+    background-color: rgba($c-black, 0.5);
+    opacity: 0;
+    visibility: hidden;
+    transition:
+      opacity 0.5s ease,
+      visibility 0.5s ease;
+  }
+}
+
+/*------------------------------------------------
+main
+------------------------------------------------*/
+#main {
+  overflow: hidden;
+  @include media_wide {
+    display: block; /*IE対策*/
+  }
+}
+
+// /*------------------------------------------------
+// page-top
+// ------------------------------------------------*/
+// .pagetop__wrp {
+//   position: relative;
+//   width: 100%;
+//   height: 0;
+//   margin-right: auto;
+//   margin-left: auto;
+//   @include media_narrow {
+//   }
+// }
+// .pagetop {
+//   position: relative;
+//   opacity: 0;
+//   visibility: hidden;
+//   transition: opacity 0.25s ease, visibility 0s 0.25s ease;
+//   &.pagetop--show {
+//     opacity: 1;
+//     visibility: visible;
+//     transition: opacity 0.25s ease, visibility 0s ease;
+//   }
+//   a {
+//     @include fz(12);
+//     line-height: 1em;
+//     position: fixed;
+//     z-index: 100;
+//     bottom: 0;
+//     right: 0;
+//     @include flex;
+//     width: rem(50);
+//     height: rem(50);
+//     letter-spacing: 0.1em;
+//     color: $c-white;
+//     background-color: #313131;
+//     @include media_hover {
+//       &:hover {
+//         background-color: #6fba2c;
+//       }
+//     }
+//     transition: background 0.25s ease;
+//     @include media_narrow {
+//       width: rem(50);
+//       height: rem(50);
+//     }
+//   }
+// }
+
+/*------------------------------------------------
+breadcrumb
+------------------------------------------------*/
+.breadcrumb {
+  @include media_narrow {
+  }
+  @include media_hover {
+    a.breadcrumb__link {
+      &:hover {
+        color: tomato;
+      }
+    }
+  }
+  .breadcrumb__list {
+    @include flex;
+    justify-content: flex-start;
+    width: rem(1000);
+    margin: auto;
+    padding: rem(10) 0;
+    @include media_narrow {
+      width: 100%;
+      padding: rem(15);
+    }
+  }
+  .breadcrumb__item {
+    @include flex;
+    &:not(:last-child)::after {
+      // content: '/';
+      content: "";
+      width: rem(10);
+      height: rem(10);
+      margin: 0 rem(10);
+      background: url(../img/svg/ico_right.svg) center / contain no-repeat;
+    }
+  }
+  .breadcrumb__link {
+    @include flex;
+    font-size: rem(11);
+    line-height: 1;
+    letter-spacing: 0.05em;
+    transition: color 0.25s ease;
+  }
+}
+
+/*------------------------------------------------
+footer
+------------------------------------------------*/
+#footer {
+  @include flex;
+  padding-block: rem(100);
+  background-color: $c-black;
+  img {
+    width: rem(650);
+  }
+}
+
+// /*------------------------------------------------
+// not-found ※wp導入時のみ
+// ------------------------------------------------*/
+// .not-found {
+//   width: rem(1000);
+//   margin: rem(100) auto;
+//   text-align: center;
+//   letter-spacing: 0.05em;
+//   @include media_narrow {
+//     width: 100%;
+//     margin: rem(100) auto rem(140);
+//     padding: rem(100) rem(30) 0;
+//   }
+//   .not-found__ttl {
+//     @include fz(50);
+//     font-weight: bold;
+//     @include media_narrow {
+//       @include fz(46);
+//     }
+//     i {
+//       margin-right: rem(5);
+//       color: #ffc107;
+//       @include media_narrow {
+//         margin-right: rem(10);
+//       }
+//     }
+//   }
+//   .not-found__ttl-sub {
+//     @include fz(20);
+//     font-weight: bold;
+//     @include media_narrow {
+//       @include fz(32);
+//     }
+//   }
+//   .not-found__txt {
+//     @include fz(18);
+//     margin: rem(30) 0 rem(80);
+//     @include media_narrow {
+//       @include fz(28);
+//       margin: rem(40) 0 rem(60);
+//       text-align: left;
+//     }
+//   }
+// }
+
+/*------------------------------------------------
+Loading
+------------------------------------------------*/
+.loading {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  z-index: 10000;
+  background: #fff;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  align-items: center;
+  transition:
+    opacity 0.5s ease,
+    visibility 0s 0.5s ease,
+    z-index 0s 0.5s ease;
+  &.loading--off {
+    opacity: 0;
+    visibility: hidden;
+    z-index: -1;
+  }
+  .loading__logo {
+    width: rem(300);
+  }
+}
+.now-loading {
+  overflow: hidden;
+  width: 100%;
+  position: fixed;
+  left: 0;
+}
+
+/*------------------------------------------------
+modal
+------------------------------------------------*/
+.modal {
+  display: block;
+  position: fixed;
+  inset: 0;
+  max-width: 100%;
+  max-height: 100%;
+  width: rem(1000);
+  margin: auto;
+  border: 0;
+  opacity: 0;
+  visibility: hidden;
+  background: transparent;
+  filter: drop-shadow(0 0 rem(30) rgba($c-black, 0.5));
+  transition:
+    opacity 0.25s ease,
+    visibility 0.25s ease;
+  &[open] {
+    opacity: 1;
+    visibility: visible;
+  }
+
+  // モーダルを開いた際フォーカスを当てるが、アウトラインは非表示
+  outline: 0 !important;
+  outline-color: transparent !important;
+
+  /* スクロールバーの非表示 ------------*/
+  /*IE(Internet Explorer)・Microsoft Edgeへの対応*/
+  -ms-overflow-style: none;
+  /*Firefoxへの対応*/
+  scrollbar-width: none;
+  /*Google Chrome、Safariへの対応*/
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  /* オーバーレイ ------------*/
+  &::backdrop {
+    background-color: rgba($c-black, 0.3);
+    transition: all 0.25s ease;
+  }
+
+  .modal__inner {
+    position: relative;
+    padding: rem(25);
+  }
+  .modal__main {
+    position: relative;
+    padding: rem(50);
+    border-radius: rem(10);
+    background-color: $c-white;
+  }
+
+  .modal-close {
+    position: absolute;
+    top: rem(5);
+    right: rem(5);
+    width: rem(50);
+    height: rem(50);
+    padding: rem(5);
+    border-radius: 50%;
+    background-color: $c-black;
+    overflow: hidden;
+    transition: background-color 0.25s ease;
+    @include media_hover {
+      &:hover {
+        background-color: $c-red;
+      }
+    } /* media_hover ------------ */
+    .ico_svg {
+      transform: rotate(45deg);
+      .svg-path {
+        fill: $c-white;
+      }
+    }
+  }
+}

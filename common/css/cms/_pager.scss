@@ -1,0 +1,67 @@
+@charset "utf-8";
+@use "../util/util" as *;
+/*------------------------------------------------
+pager
+------------------------------------------------*/
+.pager {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-top: rem(70);
+  @include media_narrow {
+    margin-top: rem(35);
+  }
+  .pager-btn-wrp {
+    width: rem(150);
+    height: rem(45);
+    @include media_narrow {
+      width: rem(100);
+      height: rem(40);
+      margin: 0 rem(5);
+    }
+  }
+  .pager-btn-wrp--center {
+    margin: 0 rem(25);
+    @include media_narrow {
+      margin: 0;
+    }
+  }
+  .pager-btn {
+    width: 100%;
+    height: 100%;
+    background-color: #fff;
+    border: rem(2) solid #333;
+    color: #333;
+    @include fz(16);
+    font-weight: bold;
+    letter-spacing: 0.1em;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    transition: background-color 0.25s, color 0.25s;
+    @include media_hover {
+      &:hover {
+        background-color: #333;
+        color: #fff;
+      }
+    }
+    @include media_narrow {
+      @include fz(8);
+    }
+  }
+  .pager-btn--center {
+    background-color: #333;
+    border: rem(2) solid #333;
+    color: #fff;
+    transition: background-color 0.25s, color 0.25s, border 0.25s;
+    @include media_wide {
+      &:hover {
+        background-color: tomato;
+        border: rem(2) solid tomato;
+        color: #ffff;
+      }
+    }
+  }
+}

@@ -1,0 +1,31 @@
+@charset 'utf-8';
+@use "../../common/css/util/util" as *;
+
+/*------------------------------------------------
+.lcl-cnt
+------------------------------------------------*/
+.lcl-cnt {
+  .lcl-cnt-side__img {
+    &:nth-of-type(2) {
+      clip-path: polygon(100% 0%, 100% 0%, 100% 100%, 100% 100%);
+    }
+  }
+}
+
+/*------------------------------------------------
+.lcl-mv
+------------------------------------------------*/
+.lcl-mv {
+  position: relative;
+  height: 0;
+  padding-top: pct(9, 16);
+  // padding-top: 20%;
+  .lcl-mv__in {
+    position: absolute;
+    inset: -100%;
+    width: 100%;
+    // height: rem(731);
+    aspect-ratio: 16/9;
+    margin: auto;
+  }
+}

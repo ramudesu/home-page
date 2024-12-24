@@ -1,0 +1,73 @@
+@charset 'utf-8';
+@use "../../util/util" as *;
+/*------------------------------------------------
+テーブル設定ブロック
+------------------------------------------------*/
+.post-content,
+body #wpwrap .editor-styles-wrapper .block-editor-block-list__layout // ブロックエディタ
+{
+  .fse-table-wrap {
+    &.wp-block {
+      margin-top: rem(20);
+      padding: rem(10) rem(10);
+      border: rem(1) dashed $c-gray;
+      .fse-table {
+        margin-top: 0;
+      }
+    }
+    table {
+      table-layout: fixed;
+      thead,
+      tbody,
+      tr {
+        max-width: 100%;
+      }
+    }
+    &.fse-table-wrap--w-max {
+      table {
+        width: 100% !important;
+      }
+    }
+    &.fse-table-wrap--w-half {
+      table {
+        width: 50% !important;
+        @include media_narrow {
+          width: 100% !important;
+        } /* SP only ------------ */
+      }
+    }
+    &.fse-table-wrap--manual,
+    &.fse-table-wrap--auto {
+      table {
+        table-layout: auto;
+      }
+    }
+    &.fse-table-wrap--manual {
+      table {
+        table-layout: auto;
+        th,
+        td {
+          width: 100%;
+        }
+      }
+    }
+    &:not(.fse-table-wrap--manual) {
+      table {
+        th,
+        td {
+          width: auto !important;
+        }
+      }
+    }
+    &.fse-table-wrap--scroll {
+      @include media_narrow {
+        overflow: hidden;
+        overflow-x: auto;
+        table {
+          width: max-content !important;
+          max-width: rem(670);
+        }
+      } /* SP only ------------ */
+    }
+  }
+}
