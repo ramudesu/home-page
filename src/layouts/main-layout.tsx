@@ -1,13 +1,14 @@
+import Navbar from "@/components/navbar/ver1";
 import AppSidebar from "@/components/sidebar";
-import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
+import { SidebarProvider } from "@/components/ui/sidebar";
 import { Outlet } from "react-router";
 
 const MainLayout = () => {
   return (
     <SidebarProvider>
       <AppSidebar />
-      <main>
-        <SidebarTrigger />
+      <main className="w-full">
+        <Navbar />
         <Outlet />
       </main>
     </SidebarProvider>

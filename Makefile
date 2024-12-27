@@ -8,13 +8,13 @@ devrun:
 	bun run dev
 
 devinstall:
-    bun install
+	bun install
 
 devbuild:
-    bun build
+	bun build
 
 devclean:
-    rm -rf node_modules
+	rm -rf node_modules
 
 lint-web:
 	cd web && yarn lint --fix
