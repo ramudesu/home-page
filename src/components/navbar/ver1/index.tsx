@@ -16,7 +16,7 @@ const Navbar = ({}: Props) => {
   }, []);
 
   return (
-    <div className="pt-3 px-10 w-full flex items-center gap-4 *:flex-shrink-0">
+    <div className="fixed pt-3 px-10 w-full flex items-center gap-4 *:flex-shrink-0 z-[1000]">
       <div className="h-10 flex items-center gap-x-3">
         <CustomTooltip
           side="bottom"
@@ -47,7 +47,7 @@ const Navbar = ({}: Props) => {
 
       {/* TODO: Navigator Section */}
       <div className="h-10 flex-1 flex items-center justify-center">
-        <Menu />
+        <Menu className="bg-white dark:bg-black" />
       </div>
 
       {/* Interactive Buttons */}

@@ -106,3 +106,8 @@ body {
   padding: 0;
   box-sizing: border-box;
 }
+
+img {
+  overflow-clip-margin: content-box;
+  overflow: clip;
+}

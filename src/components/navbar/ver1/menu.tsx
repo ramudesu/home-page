@@ -9,10 +9,19 @@ import {
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
 
-const Menu = () => {
+type Props = {
+  className?: string;
+};
+
+const Menu = ({ className }: Props) => {
   return (
     <NavigationMenu>
-      <NavigationMenuList className="h-full space-x-2 rounded-full border border-black dark:border-white">
+      <NavigationMenuList
+        className={cn(
+          "h-full space-x-2 rounded-full border border-black dark:border-white",
+          className,
+        )}
+      >
         <NavigationMenuItem>
           <NavigationMenuTrigger className="h-full rounded-full">
             Getting started

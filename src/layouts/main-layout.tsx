@@ -5,7 +5,7 @@ import { Outlet } from "react-router";
 
 const MainLayout = () => {
   return (
-    <SidebarProvider>
+    <SidebarProvider defaultOpen={false}>
       <AppSidebar />
       <main className="w-full">
         <Navbar />
