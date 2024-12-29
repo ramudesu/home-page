@@ -185,7 +185,7 @@ const HeroVer1 = ({}: Props) => {
   );
 
   return (
-    <div className="w-screen h-screen relative">
+    <div className="w-full h-screen relative">
       {/* Main Slides */}
       <div className="w-full h-full bg-black/65 relative overflow-hidden">
         {slides.map((slide, index) => (
