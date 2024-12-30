@@ -16,7 +16,7 @@ const Navbar = ({}: Props) => {
   }, []);
 
   return (
-    <div className="fixed pt-3 px-10 w-full flex items-center gap-4 *:flex-shrink-0 z-[1000]">
+    <div className="absolute top-0 left-0 pt-3 px-10 w-full flex items-center gap-4 *:flex-shrink-0 z-[1000]">
       <div className="h-10 flex items-center gap-x-3">
         <CustomTooltip
           side="bottom"
