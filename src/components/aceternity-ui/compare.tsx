@@ -33,7 +33,8 @@ export const Compare = ({
 
   const sliderRef = useRef<HTMLDivElement>(null);
 
-  const [isMouseOver, setIsMouseOver] = useState(false);
+  // TODO: If use the isMouseOver state then add it here
+  const [, setIsMouseOver] = useState(false);
 
   const autoplayRef = useRef<NodeJS.Timer | null>(null);
 
@@ -83,7 +84,8 @@ export const Compare = ({
   }
 
   const handleStart = useCallback(
-    (clientX: number) => {
+    // TODO: previously its clientX, if use this param remove the _
+    (_clientX: number) => {
       if (slideMode === "drag") {
         setIsDragging(true);
       }

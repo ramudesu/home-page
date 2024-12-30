@@ -1,18 +1,27 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import { motion } from "framer-motion";
+import { cn } from "@/lib/utils";
 
 export const TextHoverEffect = ({
   text,
   duration,
+  scale = 3,
+  strokeWidth = 1, // Add strokeWidth prop with a default value
+  textClassName,
 }: {
   text: string;
   duration?: number;
   automatic?: boolean;
+  scale?: number;
+  strokeWidth?: number; // Add strokeWidth prop type
+  textClassName?: string; // Add className prop type
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
+  const textRef = useRef<SVGTextElement>(null);
   const [cursor, setCursor] = useState({ x: 0, y: 0 });
   const [hovered, setHovered] = useState(false);
   const [maskPosition, setMaskPosition] = useState({ cx: "50%", cy: "50%" });
+  const [svgDimensions, setSvgDimensions] = useState({ width: 0, height: 0 });
 
   useEffect(() => {
     if (svgRef.current && cursor.x !== null && cursor.y !== null) {
@@ -26,12 +35,19 @@ export const TextHoverEffect = ({
     }
   }, [cursor]);
 
+  useEffect(() => {
+    if (textRef.current) {
+      const bbox = textRef.current.getBBox();
+      setSvgDimensions({ width: bbox.width, height: bbox.height });
+    }
+  }, [text]);
+
   return (
     <svg
       ref={svgRef}
-      width="100%"
-      height="100%"
-      viewBox="0 0 300 100"
+      width={svgDimensions.width * scale}
+      height={svgDimensions.height * scale}
+      viewBox={`0 0 ${svgDimensions.width} ${svgDimensions.height}`}
       xmlns="http://www.w3.org/2000/svg"
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
@@ -40,7 +56,7 @@ export const TextHoverEffect = ({
     >
       <defs>
         <linearGradient
-          id="textGradient"
+          id={`textGradient-${text}`}
           gradientUnits="userSpaceOnUse"
           cx="50%"
           cy="50%"
@@ -58,40 +74,36 @@ export const TextHoverEffect = ({
         </linearGradient>
 
         <motion.radialGradient
-          id="revealMask"
+          id={`revealMask-${text}`}
           gradientUnits="userSpaceOnUse"
           r="20%"
           animate={maskPosition}
           transition={{ duration: duration ?? 0, ease: "easeOut" }}
-
-          // example for a smoother animation below
-
-          //   transition={{
-          //     type: "spring",
-          //     stiffness: 300,
-          //     damping: 50,
-          //   }}
         >
           <stop offset="0%" stopColor="white" />
           <stop offset="100%" stopColor="black" />
         </motion.radialGradient>
-        <mask id="textMask">
+        <mask id={`textMask-${text}`}>
           <rect
             x="0"
             y="0"
             width="100%"
             height="100%"
-            fill="url(#revealMask)"
+            fill={`url(#revealMask-${text})`}
           />
         </mask>
       </defs>
       <text
+        ref={textRef}
         x="50%"
         y="50%"
         textAnchor="middle"
         dominantBaseline="middle"
-        strokeWidth="0.3"
-        className="font-[helvetica] font-bold stroke-neutral-200 dark:stroke-neutral-800 fill-transparent text-7xl  "
+        strokeWidth={strokeWidth} // Use the strokeWidth prop
+        className={cn(
+          "font-[helvetica] font-bold stroke-neutral-200 dark:stroke-neutral-800 fill-transparent text-7xl",
+          textClassName,
+        )}
         style={{ opacity: hovered ? 0.7 : 0 }}
       >
         {text}
@@ -101,13 +113,13 @@ export const TextHoverEffect = ({
         y="50%"
         textAnchor="middle"
         dominantBaseline="middle"
-        strokeWidth="0.3"
-        className="font-[helvetica] font-bold fill-transparent text-7xl   stroke-neutral-200 dark:stroke-neutral-800"
+        strokeWidth={strokeWidth} // Use the strokeWidth prop
+        className={cn(
+          "font-[helvetica] font-bold fill-transparent text-7xl stroke-neutral-200 dark:stroke-neutral-800",
+          textClassName,
+        )}
         initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
-        animate={{
-          strokeDashoffset: 0,
-          strokeDasharray: 1000,
-        }}
+        animate={{ strokeDashoffset: 0, strokeDasharray: 1000 }}
         transition={{
           duration: 4,
           ease: "easeInOut",
@@ -120,13 +132,18 @@ export const TextHoverEffect = ({
         y="50%"
         textAnchor="middle"
         dominantBaseline="middle"
-        stroke="url(#textGradient)"
-        strokeWidth="0.3"
-        mask="url(#textMask)"
-        className="font-[helvetica] font-bold fill-transparent text-7xl  "
+        stroke={`url(#textGradient-${text})`}
+        strokeWidth={strokeWidth} // Use the strokeWidth prop
+        mask={`url(#textMask-${text})`}
+        className={cn(
+          "font-[helvetica] font-bold fill-transparent text-7xl",
+          textClassName,
+        )}
       >
         {text}
       </text>
     </svg>
   );
 };
+
+export default TextHoverEffect;

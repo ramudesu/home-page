@@ -1,15 +1,19 @@
-import React, { useCallback, useEffect, useRef, useState } from "react";
-import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
+// import React, { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
+// import { AnimatePresence, motion, LayoutGroup } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
 
 export const FlipWords = ({
   words,
   duration = 3000,
   className,
+  spaceRight = false,
 }: {
   words: string[];
   duration?: number;
   className?: string;
+  spaceRight?: boolean;
 }) => {
   const [currentWord, setCurrentWord] = useState(words[0]);
   const [isAnimating, setIsAnimating] = useState<boolean>(false);
@@ -88,7 +92,7 @@ export const FlipWords = ({
                 {letter}
               </motion.span>
             ))}
-            <span className="inline-block">&nbsp;</span>
+            {spaceRight && <span className="inline-block">&nbsp;</span>}
           </motion.span>
         ))}
       </motion.div>
