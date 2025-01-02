@@ -6,15 +6,19 @@ export const TextHoverEffect = ({
   text,
   duration,
   scale = 3,
-  strokeWidth = 1, // Add strokeWidth prop with a default value
+  strokeWidth = 1,
   textClassName,
+  motionTextTagRef,
+  showHoverEffect = true,
 }: {
   text: string;
   duration?: number;
   automatic?: boolean;
   scale?: number;
-  strokeWidth?: number; // Add strokeWidth prop type
-  textClassName?: string; // Add className prop type
+  strokeWidth?: number;
+  textClassName?: string;
+  motionTextTagRef?: any;
+  showHoverEffect?: boolean;
 }) => {
   const svgRef = useRef<SVGSVGElement>(null);
   const textRef = useRef<SVGTextElement>(null);
@@ -104,11 +108,12 @@ export const TextHoverEffect = ({
           "font-[helvetica] font-bold stroke-neutral-200 dark:stroke-neutral-800 fill-transparent text-7xl",
           textClassName,
         )}
-        style={{ opacity: hovered ? 0.7 : 0 }}
+        style={{ opacity: showHoverEffect && hovered ? 0.7 : 0 }}
       >
         {text}
       </text>
       <motion.text
+        ref={motionTextTagRef}
         x="50%"
         y="50%"
         textAnchor="middle"
@@ -127,21 +132,23 @@ export const TextHoverEffect = ({
       >
         {text}
       </motion.text>
-      <text
-        x="50%"
-        y="50%"
-        textAnchor="middle"
-        dominantBaseline="middle"
-        stroke={`url(#textGradient-${text})`}
-        strokeWidth={strokeWidth} // Use the strokeWidth prop
-        mask={`url(#textMask-${text})`}
-        className={cn(
-          "font-[helvetica] font-bold fill-transparent text-7xl",
-          textClassName,
-        )}
-      >
-        {text}
-      </text>
+      {showHoverEffect && (
+        <text
+          x="50%"
+          y="50%"
+          textAnchor="middle"
+          dominantBaseline="middle"
+          stroke={`url(#textGradient-${text})`}
+          strokeWidth={strokeWidth} // Use the strokeWidth prop
+          mask={`url(#textMask-${text})`}
+          className={cn(
+            "font-[helvetica] font-bold fill-transparent text-7xl",
+            textClassName,
+          )}
+        >
+          {text}
+        </text>
+      )}
     </svg>
   );
 };

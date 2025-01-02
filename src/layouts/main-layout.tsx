@@ -7,7 +7,7 @@ const MainLayout = () => {
   return (
     <SidebarProvider defaultOpen={false}>
       <AppSidebar />
-      <main className="w-full">
+      <main className="w-full bg-amber-50">
         <Navbar />
         <Outlet />
       </main>

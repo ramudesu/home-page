@@ -18,8 +18,8 @@ const ParallaxVer1 = ({}: Props) => {
   const containerRef = React.useRef<HTMLDivElement>(null);
   const morningRef = React.useRef<HTMLDivElement>(null);
   const nightRef = React.useRef<HTMLDivElement>(null);
-  const nightRgbTextRef = React.useRef<HTMLDivElement>(null);
-  const morningRgbTextRef = React.useRef<HTMLDivElement>(null);
+  const nightRgbTextRef = React.useRef<SVGSVGElement>(null);
+  const morningRgbTextRef = React.useRef<SVGSVGElement>(null);
 
   useGSAP(() => {
     if (!isMounted) return;
@@ -28,17 +28,35 @@ const ParallaxVer1 = ({}: Props) => {
     const tl = gsap.timeline();
     tl.fromTo(
       nightRgbTextRef.current,
-      { opacity: 0, y: 25 },
-      { opacity: 1, y: 0, duration: 3 },
+      {
+        strokeDashoffset: 1000,
+        strokeDasharray: 1000,
+        // opacity: 0,
+        //  y: 25
+      },
+      {
+        strokeDashoffset: 0,
+        // opacity: 1,
+        // y: 0,
+      },
     )
-      .from(morningRef.current, { xPercent: 100, duration: 3 })
+      .from(morningRef.current, { xPercent: 100 })
       .fromTo(
         morningRgbTextRef.current,
-        { opacity: 0, y: -25 },
-        { opacity: 1, y: 0, duration: 3 },
+        {
+          strokeDashoffset: 1000,
+          // opacity: 0,
+          //  y: -25,
+          strokeDasharray: 1000,
+        },
+        {
+          strokeDashoffset: 0,
+          //  opacity: 1,
+          //  y: 0,
+        },
       );
 
-    ScrollTrigger.create({
+    const scrollTriggerInstance = ScrollTrigger.create({
       animation: tl,
       trigger: containerRef.current,
       start: "bottom bottom",
@@ -47,6 +65,12 @@ const ParallaxVer1 = ({}: Props) => {
       pin: true,
       // anticipatePin: 1,
     });
+
+    // Clean up on unmount
+    return () => {
+      scrollTriggerInstance.kill();
+      tl.kill();
+    };
   }, [isMounted]);
 
   return (
@@ -65,11 +89,13 @@ const ParallaxVer1 = ({}: Props) => {
             muted
           />
         </div>
-        <div ref={nightRgbTextRef} className="absolute top-10 left-8">
+        <div className="absolute top-10 left-8">
           <TextHoverEffect
             text={"夜から"}
             scale={2.5}
-            // textClassName="fill-black/15"
+            motionTextTagRef={nightRgbTextRef}
+            showHoverEffect={false}
+            // textClassName="fill-black/45"
           />
         </div>
         <div
@@ -84,11 +110,13 @@ const ParallaxVer1 = ({}: Props) => {
             muted
           />
         </div>
-        <div ref={morningRgbTextRef} className="absolute right-8 bottom-0">
+        <div className="absolute right-8 bottom-0">
           <TextHoverEffect
             text={"朝まで"}
+            motionTextTagRef={morningRgbTextRef}
             scale={2.5}
-            textClassName="fill-black/15"
+            showHoverEffect={false}
+            // textClassName="fill-black/45"
           />
         </div>
       </div>

@@ -1,4 +1,4 @@
-import { images, jsons, videos } from "@/constants";
+import { images, jsons } from "@/constants";
 import { Play } from "lucide-react";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
@@ -83,7 +83,7 @@ const MvBackground = ({}: Props) => {
         },
       );
 
-    ScrollTrigger.create({
+    const scrollTriggerInstance = ScrollTrigger.create({
       animation: tl,
       trigger: bgMvRef.current,
       start: "bottom bottom",
@@ -91,6 +91,12 @@ const MvBackground = ({}: Props) => {
       scrub: 1,
       pin: true,
     });
+
+    // Clean up on unmount
+    return () => {
+      scrollTriggerInstance.kill();
+      tl.kill();
+    };
   }, [isMounted]);
 
   const kumaImg = React.useMemo(() => {
@@ -117,7 +123,7 @@ const MvBackground = ({}: Props) => {
 
   return (
     <div ref={bgMvRef} className="w-full h-screen relative">
-      <div className="w-full h-full absolute top-0 left-0 -z-1 overflow-hidden">
+      {/* <div className="w-full h-full absolute top-0 left-0 -z-1 overflow-hidden">
         <video
           className="absolute top-1/2 left-1/2 min-w-full min-h-full -translate-x-1/2 -translate-y-1/2 object-cover overflow-clip"
           src={videos.bg_mv}
@@ -125,18 +131,41 @@ const MvBackground = ({}: Props) => {
           loop
           muted
         />
-      </div>
+      </div> */}
       <div className="z-2 w-full h-full p-10 absolute top-0 left-0">
         <div className="flex h-full w-full">
           <div className="basis-1/2 relative">
             <div className="py-10 px-20 w-full h-full">
-              <div
+              {/* <div
                 ref={kumaImgContainerRef}
                 className="w-full h-full flex flex-col gap-10 items-center justify-center rounded-xl bg-white/45 backdrop-blur-lg border border-white/65 relative"
               >
                 <div className="absolute w-full h-full p-1 z-0">
                   <div className="w-full h-full border border-white/20 rounded-lg" />
                 </div>
+                <div
+                  className="basis-2/3 h-2/3 z-10"
+                  onClick={handleClickKumaImage}
+                >
+                  <img
+                    ref={kumaImgRef}
+                    loading="lazy"
+                    src={kumaImg}
+                    className="h-full object-cover"
+                    style={{
+                      transformOrigin: "center bottom",
+                    }}
+                    alt=""
+                  />
+                </div>
+                <p className="z-1 font-bold text-4xl text-center w-4/5 text-black/85 basis-1/3 h-1/3">
+                  日本語が下手です。でも、頑張ります！
+                </p>
+              </div> */}
+              <div
+                ref={kumaImgContainerRef}
+                className="w-full h-full flex flex-col gap-10 items-center justify-center rounded-xl relative"
+              >
                 <div
                   className="basis-2/3 h-2/3 z-10"
                   onClick={handleClickKumaImage}
