@@ -14,6 +14,10 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
       colors: {
+        hoyo: {
+          bg: "#efefef",
+          blue: "#4d6eff",
+        },
         background: "hsl(var(--background))",
         foreground: "hsl(var(--foreground))",
         card: {

@@ -164,12 +164,9 @@ const MvBackground = ({}: Props) => {
               </div> */}
               <div
                 ref={kumaImgContainerRef}
-                className="w-full h-full flex flex-col gap-10 items-center justify-center rounded-xl relative"
+                className="w-full h-full flex flex-col gap-10 items-center justify-center rounded-xl relative z-10"
               >
-                <div
-                  className="basis-2/3 h-2/3 z-10"
-                  onClick={handleClickKumaImage}
-                >
+                <div className="basis-2/3 h-2/3" onClick={handleClickKumaImage}>
                   <img
                     ref={kumaImgRef}
                     loading="lazy"
@@ -186,10 +183,10 @@ const MvBackground = ({}: Props) => {
                 </p>
               </div>
             </div>
-            <div className="w-full h-full absolute top-0 left-0">
+            <div className="w-full h-full absolute top-0 left-0 z-1">
               <div
                 ref={secondContentRef}
-                className="w-full h-full bg-blue-600 relative opacity-0"
+                className="w-full h-full bg-blue-500 relative opacity-0"
               >
                 <div className="absolute -right-[4.2rem] -top-[4.8rem]">
                   <Lottie
@@ -240,7 +237,7 @@ const MvBackground = ({}: Props) => {
           <div className="basis-1/2">
             <div
               ref={firstContentRef}
-              className="w-full h-full bg-pink-600 relative opacity-0"
+              className="w-full h-full bg-pink-500 relative opacity-0"
             >
               <div className="absolute -right-[4.2rem] -top-[4.8rem]">
                 <Lottie

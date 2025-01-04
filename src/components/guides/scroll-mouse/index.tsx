@@ -5,9 +5,17 @@ import { Mouse } from "lucide-react";
 
 type Props = {
   className?: string;
+  iconClassName?: string;
+  lineClassName?: string;
+  hideOnScroll?: boolean;
 };
 
-const ScrollMouseDownGuide = ({ className }: Props) => {
+const ScrollMouseDownGuide = ({
+  className,
+  iconClassName,
+  lineClassName,
+  hideOnScroll = true,
+}: Props) => {
   const [scrolled, setScrolled] = React.useState(false);
 
   const scrollEvent = useCallback(() => {
@@ -24,11 +32,22 @@ const ScrollMouseDownGuide = ({ className }: Props) => {
   }, [scrollEvent]);
 
   return (
-    <div className={cn("mouse-scroll", scrolled && "scrolled", className)}>
+    <div
+      className={cn(
+        "mouse-scroll absolute bottom-[0.75rem] right-[0.8rem]",
+        hideOnScroll && scrolled && "scrolled",
+        className,
+      )}
+    >
       <div>
-        <Mouse className="w-4 h-4 text-white" />
+        <Mouse className={cn("w-4 h-4 text-white", iconClassName)} />
       </div>
-      <div className="mouse-scroll-line" />
+      <div
+        className={cn(
+          "mouse-scroll-line w-[0.05rem] h-[3.75rem] after:bg-white",
+          lineClassName,
+        )}
+      />
     </div>
   );
 };

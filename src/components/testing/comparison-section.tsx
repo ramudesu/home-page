@@ -6,15 +6,6 @@ import {
 import { images, jsons } from "@/constants";
 import { Compare } from "../aceternity-ui/compare";
 import Lottie from "lottie-react";
-import { FloatingDock } from "../aceternity-ui/floating-dock";
-import {
-  IconBrandGithub,
-  IconBrandX,
-  IconExchange,
-  IconHome,
-  IconNewSection,
-  IconTerminal2,
-} from "@tabler/icons-react";
 import { HoverEffect } from "../aceternity-ui/card-hover-effect";
 import React from "react";
 import { HoverBorderGradient } from "../aceternity-ui/hover-border-gradient";
@@ -29,54 +20,6 @@ gsap.registerPlugin(useGSAP);
 gsap.registerPlugin(ScrollTrigger);
 
 type Props = {};
-
-// Floating dock items
-const links = [
-  {
-    title: "Home",
-    icon: (
-      <IconHome className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-    ),
-    href: "#",
-  },
-
-  {
-    title: "Products",
-    icon: (
-      <IconTerminal2 className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-    ),
-    href: "#",
-  },
-  {
-    title: "Components",
-    icon: (
-      <IconNewSection className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-    ),
-    href: "#",
-  },
-  {
-    title: "Changelog",
-    icon: (
-      <IconExchange className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-    ),
-    href: "#",
-  },
-
-  {
-    title: "Twitter",
-    icon: (
-      <IconBrandX className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-    ),
-    href: "#",
-  },
-  {
-    title: "GitHub",
-    icon: (
-      <IconBrandGithub className="h-full w-full text-neutral-500 dark:text-neutral-300" />
-    ),
-    href: "#",
-  },
-];
 
 const projects = [
   {
@@ -180,7 +123,7 @@ const ComparisonSection = ({}: Props) => {
             </TextRevealCardDescription>
           </TextRevealCard>
         </div>
-        <FloatingDock items={links} />
+
         <HoverEffect items={projects} />
         <HoverBorderGradient
           containerClassName="rounded-full"

@@ -1,10 +1,11 @@
-import { Beaker, Globe, Mail, Moon, Sun } from "lucide-react";
+import { Beaker, Globe, Mail, Moon, PanelLeftOpen, Sun } from "lucide-react";
 import { ModeToggle } from "../../mode-toggle";
 import { Button } from "../../ui/button";
 import Menu from "./menu";
-import { SidebarTrigger } from "../../ui/sidebar";
+// import { SidebarTrigger } from "../../ui/sidebar";
 import React from "react";
-import CustomTooltip from "../../tooltip/custom-tooltip";
+// import CustomTooltip from "../../tooltip/custom-tooltip";
+import SidebarSheet from "@/components/sidebar/sidebar-sheet";
 
 type Props = {};
 
@@ -16,26 +17,24 @@ const Navbar = ({}: Props) => {
   }, []);
 
   return (
-    <div className="absolute top-0 left-0 pt-3 px-10 w-full flex items-center gap-4 *:flex-shrink-0 z-[1000]">
+    <div className="absolute top-0 left-0 pt-3 px-10 w-full flex items-center gap-4 *:flex-shrink-0 z-50">
       <div className="h-10 flex items-center gap-x-3">
-        <CustomTooltip
+        {/* <CustomTooltip
           side="bottom"
           align="start"
           sideOffset={10}
           content={"Toggle Sidebar"}
           // className="bg-black text-white dark:bg-white dark:text-black"
-        >
+        > */}
+        <SidebarSheet>
           <div
             onClick={handleClickSidebarTriggerButton}
             className="hover:bg-secondary group p-1 w-10 h-10 flex items-center justify-center rounded-full border border-black dark:border-white hover:cursor-pointer"
           >
-            <SidebarTrigger
-              ref={sidebarTriggerRef}
-              onClick={(e) => e.stopPropagation()}
-              className="w-4 h-4 group-hover:scale-105 transition"
-            />
+            <PanelLeftOpen className="w-4 h-4" />
           </div>
-        </CustomTooltip>
+        </SidebarSheet>
+        {/* </CustomTooltip> */}
         {/* TODO: Shirokuma Logo */}
         <Button
           variant={"custom-ghost"}

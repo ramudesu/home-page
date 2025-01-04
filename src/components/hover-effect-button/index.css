@@ -1,0 +1,48 @@
+.hover-effect-button-container {
+  border-radius: 4rem;
+  font-size: 1rem;
+  width: 10rem;
+  flex: 0 0 auto;
+  cursor: pointer;
+
+  @apply text-hoyo-blue bg-hoyo-bg;
+}
+
+.hover-effect-button-wrap {
+  height: calc(var(--rx-pc) * var(--rem-ratio) * 2px);
+  padding: 0.8rem 1.4rem;
+
+  @apply relative flex items-center justify-center;
+}
+
+.hover-effect-button-fill-bg {
+  border-radius: calc(var(--rx-pc) * var(--rem-ratio) * 1px);
+  z-index: 1;
+  transition: opacity 0.4s;
+
+  @apply bg-transparent absolute top-0 left-0 w-full h-full;
+}
+
+.hover-effect-button-svg-wrap {
+  z-index: 3;
+
+  @apply absolute w-full h-full overflow-hidden top-0 left-0;
+}
+
+.hover-effect-button-rect {
+  width: calc(100% - 2px);
+  height: calc(100% - 2px);
+  transform: translate(1px, 1px);
+  fill: none;
+  /* stroke: var(--hoyo-blue); */
+  transition: all 0.6s cubic-bezier(0, 0.5, 0.35, 1);
+
+  @apply absolute top-0 left-0;
+}
+
+.hover-effect-button-desc {
+  z-index: 2;
+  /* font-weight: 700; */
+
+  @apply relative;
+}
