@@ -1,3 +1,4 @@
+import ViewCanvas from "@/components/3d/canvas/view-canvas";
 import { AuroraBackground } from "@/components/aceternity-ui/aurora-background";
 import GlobalScrollDown from "@/components/hoc/global-scroll-down";
 import HoverEffectButton from "@/components/hover-effect-button";
@@ -48,9 +49,9 @@ const HeroVer2 = ({}: Props) => {
   });
 
   return (
-    <AuroraBackground className="items-start justify-center">
-      <div className="w-full grid grid-cols-2">
-        <div className="relative flex flex-col gap-4 px-4 pl-20">
+    <AuroraBackground className="">
+      <div className="w-full h-full grid grid-cols-2">
+        <div className="relative flex items-start justify-center flex-col gap-4 px-4 pl-20">
           <div
             id="shirokuma-power-name"
             className="flex items-center text-7xl font-bold dark:text-white opacity-0"
@@ -79,11 +80,6 @@ const HeroVer2 = ({}: Props) => {
                 {char}
               </span>
             ))}
-            {/* <span className={cn("split-char", "")}>へ</span>
-            <span className={cn("split-char", "text-blue-400")}>よ</span>
-            <span className={cn("split-char", "text-blue-400")}>う</span>
-            <span className={cn("split-char", "text-blue-400")}>こ</span>
-            <span className={cn("split-char", "text-blue-400")}>そ</span> */}
           </div>
           <div
             id="shirokuma-power-description"
@@ -98,6 +94,9 @@ const HeroVer2 = ({}: Props) => {
           >
             <React.Fragment>始めよう</React.Fragment>
           </HoverEffectButton>
+        </div>
+        <div className="flex items-center justify-center">
+          <ViewCanvas />
         </div>
       </div>
     </AuroraBackground>

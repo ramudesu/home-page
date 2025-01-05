@@ -1,4 +1,3 @@
-import Cube from "@/components/3d/cube";
 import HeroVer1 from "@/components/hero/ver1";
 import HeroVer2 from "@/components/hero/ver2";
 import ParallaxVer1 from "@/components/parallax/ver1";
@@ -13,7 +12,6 @@ const HomePage = ({}: Props) => {
       <HeroVer1 />
       <ParallaxVer1 />
       <ComparisonSection />
-      <Cube />
     </div>
   );
 };

@@ -61,7 +61,7 @@ const GlobalScrollDown = (Component: React.FC, color: "black" | "white") =>
               animate: {
                 transition: {
                   staggerChildren: 0.1,
-                  delayChildren: 0.4,
+                  delayChildren: 0.5,
                 },
               },
             }}

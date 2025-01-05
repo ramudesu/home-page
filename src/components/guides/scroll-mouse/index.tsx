@@ -44,7 +44,7 @@ const ScrollMouseDownGuide = ({
       </div>
       <div
         className={cn(
-          "mouse-scroll-line w-[0.05rem] h-[3.75rem] after:bg-white",
+          "mouse-scroll-line w-[0.05rem] h-[3.75rem] after:bg-black",
           lineClassName,
         )}
       />

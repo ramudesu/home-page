@@ -63,6 +63,12 @@ const ParallaxVer1 = ({}: Props) => {
       end: () => "+=" + viewportHeight * 3,
       scrub: 1,
       pin: true,
+      snap: {
+        snapTo: 1 / 3,
+        duration: { min: 0.2, max: 3 },
+        delay: 0.2,
+        ease: "power1.inOut",
+      },
       // anticipatePin: 1,
     });
 
