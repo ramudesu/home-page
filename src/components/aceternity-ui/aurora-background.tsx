@@ -1,27 +1,31 @@
 import { cn } from "@/lib/utils";
-import React, { ReactNode } from "react";
+import React from "react";
 
 interface AuroraBackgroundProps extends React.HTMLProps<HTMLDivElement> {
-  children: ReactNode;
+  children: React.ReactNode;
   showRadialGradient?: boolean;
+  bgClassName?: string;
+  ref?: React.RefObject<HTMLDivElement>;
 }
 
-export const AuroraBackground = ({
-  className,
-  children,
-  showRadialGradient = true,
-  ...props
-}: AuroraBackgroundProps) => {
-  return (
-    <main>
+export const AuroraBackground = React.forwardRef<
+  HTMLDivElement,
+  AuroraBackgroundProps
+>(
+  (
+    { className, bgClassName, children, showRadialGradient = true, ...props },
+    ref,
+  ) => {
+    return (
       <div
         className={cn(
-          "relative flex flex-col  h-[100vh] items-center justify-center bg-zinc-50 dark:bg-zinc-900  text-slate-950 transition-bg",
+          "relative flex flex-col h-[100vh] items-center justify-center bg-zinc-50 dark:bg-zinc-900  text-slate-950 transition-bg",
           className,
         )}
+        ref={ref}
         {...props}
       >
-        <div className="absolute inset-0 overflow-hidden">
+        <div className={cn("absolute inset-0 overflow-hidden", bgClassName)}>
           <div
             //   I'm sorry but this is what peak developer performance looks like // trigger warning
             className={cn(
@@ -48,6 +52,6 @@ export const AuroraBackground = ({
         </div>
         {children}
       </div>
-    </main>
-  );
-};
+    );
+  },
+);

@@ -4,6 +4,8 @@ import { Group, Object3DEventMap } from "three";
 
 type Props = {};
 
+useGLTF.preload("/models/car_port/Main.gltf");
+
 const CarPortModelImport = (props: Props) => {
   const ref = React.useRef<Group<Object3DEventMap>>(null);
 
@@ -21,7 +23,5 @@ const CarPortModelImport = (props: Props) => {
     </group>
   );
 };
-
-useGLTF.preload("/models/car_port/Main.gltf");
 
 export default CarPortModelImport;

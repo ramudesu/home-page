@@ -5,6 +5,8 @@ import { Group, Object3DEventMap } from "three";
 
 type Props = {};
 
+useGLTF.preload("/models/polar.glb");
+
 const PolarBearModel = ({ ...props }: Props) => {
   const ref = React.useRef<Group<Object3DEventMap>>(null);
 
@@ -21,12 +23,10 @@ const PolarBearModel = ({ ...props }: Props) => {
   }, []);
 
   return (
-    <group ref={ref} dispose={null} {...props} position={[1.45, -0.3, 1.05]}>
+    <group ref={ref} dispose={null} {...props} position={[0, -0.3, 1.05]}>
       <primitive object={scene} scale={0.005} position-y={0} rotation-y={0} />
     </group>
   );
 };
-
-useGLTF.preload("/models/polar.glb");
 
 export default PolarBearModel;

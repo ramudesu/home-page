@@ -107,6 +107,14 @@ body {
   box-sizing: border-box;
 }
 
+html {
+  background: transparent !important;
+}
+
+body {
+  background-color: #fffbeb;
+}
+
 img {
   overflow-clip-margin: content-box;
   overflow: clip;

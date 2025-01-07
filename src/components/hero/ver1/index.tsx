@@ -34,9 +34,6 @@ const HeroVer1 = ({}: Props) => {
             {
               opacity: 1,
               x: 0,
-              // onStart: () => {
-              //   gsap.set(currentSlideRef, { opacity: 1 });
-              // },
             },
             {
               opacity: 1,
@@ -52,9 +49,6 @@ const HeroVer1 = ({}: Props) => {
             {
               opacity: 1,
               x: "100%",
-              // onStart: () => {
-              //   gsap.set(nextSlideRef, { opacity: 1 });
-              // },
             },
             {
               opacity: 1,
@@ -72,9 +66,6 @@ const HeroVer1 = ({}: Props) => {
               {
                 opacity: 1,
                 x: "-100%",
-                // onStart: () => {
-                //   gsap.set(nextSlideRef, { opacity: 1 });
-                // },
               },
               {
                 opacity: 1,
@@ -90,9 +81,6 @@ const HeroVer1 = ({}: Props) => {
               {
                 opacity: 1,
                 x: 0,
-                // onStart: () => {
-                //   gsap.set(currentSlideRef, { opacity: 1 });
-                // },
               },
               {
                 opacity: 1,
@@ -109,9 +97,6 @@ const HeroVer1 = ({}: Props) => {
               {
                 opacity: 1,
                 x: 0,
-                // onStart: () => {
-                //   gsap.set(currentSlideRef, { opacity: 1 });
-                // },
               },
               {
                 opacity: 1,
@@ -127,9 +112,6 @@ const HeroVer1 = ({}: Props) => {
               {
                 opacity: 1,
                 x: "100%",
-                // onStart: () => {
-                //   gsap.set(nextSlideRef, { opacity: 1 });
-                // },
               },
               {
                 opacity: 1,

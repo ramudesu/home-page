@@ -2,9 +2,13 @@ import { useGLTF } from "@react-three/drei";
 import React from "react";
 import { Group, Object3DEventMap } from "three";
 
-type Props = {};
+type Props = {
+  scale?: number;
+};
 
-const BmwModel = ({ ...props }: Props) => {
+useGLTF.preload("/models/bmw_m6_gran_coupe.glb");
+
+const BmwModel = ({ scale = 0.35, ...props }: Props) => {
   const ref = React.useRef<Group<Object3DEventMap>>(null);
 
   const { scene } = useGLTF("/models/bmw_m6_gran_coupe.glb");
@@ -13,15 +17,13 @@ const BmwModel = ({ ...props }: Props) => {
     <group
       ref={ref}
       dispose={null}
+      // rotation={[0, Math.PI / 2, 0]}
+      // position={[0, -0.75, 0]}
       {...props}
-      rotation={[0, Math.PI / 2, 0]}
-      position={[0, -0.75, 1.2]}
     >
-      <primitive object={scene} scale={0.5} position-y={0} rotation-y={0} />
+      <primitive object={scene} scale={scale} position-y={0} rotation-y={0} />
     </group>
   );
 };
-
-useGLTF.preload("/models/bmw_m6_gran_coupe.glb");
 
 export default BmwModel;

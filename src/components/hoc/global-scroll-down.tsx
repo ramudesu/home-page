@@ -32,7 +32,7 @@ const GlobalScrollDown = (Component: React.FC, color: "black" | "white") =>
     return (
       <React.Fragment>
         <Component />
-        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 z-50 flex items-center justify-center w-full pointer-events-none select-none">
+        <div className="fixed bottom-4 left-1/2 -translate-x-1/2 flex items-center justify-center w-full pointer-events-none select-none">
           <motion.div
             variants={parentVariants}
             initial="initial"
