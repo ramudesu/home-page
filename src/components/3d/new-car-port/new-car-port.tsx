@@ -161,6 +161,8 @@ type Props = {
   scale?: number;
 };
 
+useGLTF.preload("/models/new_car_port/new-car-port.gltf");
+
 function NewCarPort({ scale = 1, ...props }: Props) {
   const { nodes, materials } = useGLTF(
     "/models/new_car_port/new-car-port.gltf",
@@ -1266,7 +1268,5 @@ function NewCarPort({ scale = 1, ...props }: Props) {
     </group>
   );
 }
-
-useGLTF.preload("/models/new_car_port/new-car-port.gltf");
 
 export default NewCarPort;

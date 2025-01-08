@@ -99,6 +99,8 @@ type Props = {
   scale?: number;
 };
 
+useGLTF.preload("/models/new_car_port/tesla.gltf");
+
 function Tesla({ scale = 1, ...props }: Props) {
   const { nodes, materials } = useGLTF(
     "/models/new_car_port/tesla.gltf",
@@ -356,7 +358,5 @@ function Tesla({ scale = 1, ...props }: Props) {
     </group>
   );
 }
-
-useGLTF.preload("/models/new_car_port/tesla.gltf");
 
 export default Tesla;

@@ -1,6 +1,7 @@
 import { Canvas } from "@react-three/fiber";
-import { View, Loader } from "@react-three/drei";
+import { View, Loader, Preload } from "@react-three/drei";
 import React from "react";
+import { Perf } from "r3f-perf";
 
 type Props = {};
 
@@ -19,7 +20,7 @@ const ViewCanvas = ({}: Props) => {
         }}
         shadows
         dpr={[1, 1.5]}
-        gl={{ antialias: false }}
+        gl={{ antialias: true }}
         camera={{
           fov: 30,
         }}
@@ -27,6 +28,8 @@ const ViewCanvas = ({}: Props) => {
         <React.Suspense fallback={null}>
           <View.Port />
         </React.Suspense>
+        <Preload all />
+        <Perf />
       </Canvas>
       <Loader />
     </React.Fragment>

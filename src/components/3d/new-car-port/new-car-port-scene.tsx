@@ -178,21 +178,23 @@ const NewCarPortScene = ({
         scrub: 1,
         invalidateOnRefresh: true,
         onUpdate: (self) => {
-          if (window.scrollY < self.end - 50) {
+          if (
+            window.scrollY > 20 &&
+            window.scrollY < self.end - 50 &&
+            finishScrollRef.current
+          ) {
             // Only call once the user was scrolling up since finished
-            if (finishScrollRef.current) {
-              if (orbitable) {
-                setOrbitable(false);
-              }
-
-              // Reset position in case user has rotate the models
-              camera.position.copy(initialPosition);
-              camera.rotation.copy(initialRotation);
-              camera.updateProjectionMatrix();
-              gl.domElement.dispatchEvent(new Event("change")); // Trigger OrbitControls update
-
-              finishScrollRef.current = false;
+            if (orbitable) {
+              setOrbitable(false);
             }
+
+            // Reset position in case user has rotate the models
+            camera.position.copy(initialPosition);
+            camera.rotation.copy(initialRotation);
+            camera.updateProjectionMatrix();
+            gl.domElement.dispatchEvent(new Event("change")); // Trigger OrbitControls update
+
+            finishScrollRef.current = false;
           } else if (window.scrollY >= self.end) {
             finishScrollRef.current = true;
 

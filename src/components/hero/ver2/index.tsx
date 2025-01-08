@@ -73,7 +73,7 @@ const HeroVer2 = ({}: Props) => {
   );
 
   return (
-    <div className="w-full flex flex-col items-center" ref={containerRef}>
+    <div className="w-full flex flex-col" ref={containerRef}>
       <View className="sticky top-0 -mt-[100vh] w-screen h-screen">
         <NewCarPortScene
           scrollTriggerRef={containerRef}

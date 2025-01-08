@@ -11,7 +11,7 @@ devinstall:
 	bun install
 
 devbuild:
-	bun build
+	bun run build
 
 devclean:
 	rm -rf node_modules
